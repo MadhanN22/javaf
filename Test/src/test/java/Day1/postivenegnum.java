@@ -1,5 +1,5 @@
 package Day1;
-import java.util.Scanner;
+import java.util.Scanner;2
 public class postivenegnum {
 
 	public static void main(String[] args) {
