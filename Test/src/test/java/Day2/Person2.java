@@ -2,24 +2,17 @@ package Day2;
 
 import java.util.Scanner;
 
+enum Gender { M, F }
+
 public class Person2 {
-    enum Gender { M, F }
-
-    private String firstName;
-    private String lastName;
-    private Gender gender;
-    private String phoneNumber;
-
-    public Person2(String firstName, String lastName, Gender gender, String phoneNumber) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.gender = gender;
-        this.phoneNumber = phoneNumber;
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String g = sc.nextLine().toUpperCase();
+        if (g.equals("M") || g.equals("F")) {
+            Gender gender = Gender.valueOf(g);
+            System.out.println(gender);
+        } else {
+            System.out.println("Invalid");
+        }
     }
-
-    public void displayDetails() {
-        System.out.println("Person Details:");
-        System.out.println("First Name: " + firstName);
-        System.out.println("Last Name: " + lastName);
-        System.out.println("Gender: " + gender);
-        System
+}

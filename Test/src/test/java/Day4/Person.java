@@ -1,67 +1,37 @@
 package Day4;
 
-import java.util.Scanner;
+class Account {
+    static long counter = 1000;
+    long accNum;
+    double balance;
+    Person accHolder;
+    Account(double balance, Person accHolder) {
+        this.accNum = ++counter;
+        this.balance = balance;
+        this.accHolder = accHolder;
+    }
+    void deposit(double amt) { balance += amt; }
+    void withdraw(double amt) { if (balance - amt >= 500) balance -= amt; }
+    public String toString() { return accNum + " " + balance; }
+}
 
-class Person {
-    private String name;
-    private float age;
-
-    public Person(String name, float age) {
+public class Person {
+    String name;
+    float age;
+    Account account;
+    Person(String name, float age, double balance) {
         this.name = name;
         this.age = age;
+        this.account = new Account(balance, this);
     }
+    public String toString() { return name + " " + age + " " + account; }
 
-    public String getName() { return name; }
-    public float getAge() { return age; }
-}
-
-class Account {
-    private static long accCounter = 1000;
-    private long accNum;
-    private double balance;
-    private Person accHolder;
-
-    public Account(Person accHolder, double balance) {
-        this.accNum = ++accCounter;
-        this.accHolder = accHolder;
-        this.balance = balance;
-    }
-
-    public void deposit(double amount) {
-        balance += amount;
-    }
-
-    public void withdraw(double amount) {
-        if (balance - amount >= 500) balance -= amount;
-        else System.out.println("Withdrawal denied. Minimum balance of 500 required.");
-    }
-
-    public double getBalance() { return balance; }
-
-    public String toString() {
-        return "Account Number: " + accNum +
-               "\nHolder: " + accHolder.getName() +
-               "\nBalance: " + balance;
-    }
-}
-
-public class BankApp {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-
-        Person smith = new Person("Smith", 30);
-        Account smithAcc = new Account(smith, 2000);
-
-        Person kathy = new Person("Kathy", 28);
-        Account kathyAcc = new Account(kathy, 3000);
-
-        smithAcc.deposit(2000);
-        kathyAcc.withdraw(2000);
-
-        System.out.println("Updated Accounts:");
-        System.out.println(smithAcc);
-        System.out.println(kathyAcc);
-
-        sc.close();
+        Person smith = new Person("Smith", 30, 2000);
+        Person kathy = new Person("Kathy", 25, 3000);
+        smith.account.deposit(2000);
+        kathy.account.withdraw(2000);
+        System.out.println(smith);
+        System.out.println(kathy);
     }
 }
