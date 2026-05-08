@@ -1,6 +1,6 @@
 package day14;
 
-package mypackage;
+package day13;
 
 import java.io.*;
 import java.util.*;
